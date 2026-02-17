@@ -10,7 +10,6 @@ namespace UserManagement.Controllers
         [HttpPost("Login")]
         public ActionResult<string> Login([FromBody] LoginRequest request)
         {
-            if(!ModelState.IsValid) return BadRequest(ModelState);
             return "Login successful";
         }
     }
