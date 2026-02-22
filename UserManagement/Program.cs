@@ -2,6 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using System.Text;
+using UserManagement.Filters;
 using UserManagement.Middleware;
 using UserManagement.Model.Data;
 
@@ -75,6 +76,9 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddScoped<CustomActionFilter>();
+builder.Services.AddScoped<CustomExceptionFilter>();
+builder.Services.AddScoped<CustomAuthorizationFilter>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

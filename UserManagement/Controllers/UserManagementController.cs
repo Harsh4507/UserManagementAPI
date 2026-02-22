@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using UserManagement.Filters;
 using UserManagement.Model.Data;
 using UserManagement.Model.Request;
 
@@ -42,6 +43,9 @@ namespace UserManagement.Controllers
         }
 
         [HttpPost("JwtLogin")]
+        [ServiceFilter(typeof(CustomActionFilter))]
+        [ServiceFilter(typeof(CustomExceptionFilter))]
+        [ServiceFilter(typeof(CustomAuthorizationFilter))]
         public IActionResult JwtLogin([FromBody] LoginRequest request)
         {
             var claims = new[] { 
