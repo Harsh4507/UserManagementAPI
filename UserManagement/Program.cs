@@ -38,7 +38,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseMiddleware<PracticeMiddleware>();
-
+app.CustomMiddleware();
 app.UseAuthorization();
 
 app.MapControllers();
