@@ -1,4 +1,5 @@
 using Microsoft.OpenApi;
+using UserManagement.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,8 +37,20 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseMiddleware<PracticeMiddleware>();
+
 app.UseAuthorization();
 
 app.MapControllers();
+
+//app.Use(async (context, next) => {
+//    await context.Response.WriteAsync("Hey It's started.!");
+//    await next(context);
+//});
+
+
+//app.Run(async (context) => {
+//    await context.Response.WriteAsync("Rhino.!");
+//});
 
 app.Run();
