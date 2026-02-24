@@ -21,6 +21,8 @@ public partial class ProductCategoryManagementContext : DbContext
 
     public virtual DbSet<SubCategory> SubCategories { get; set; }
 
+    public virtual DbSet<User> Users { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Server=localhost;Database=ProductCategoryManagement;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;");
 
@@ -70,6 +72,26 @@ public partial class ProductCategoryManagementContext : DbContext
                 .HasForeignKey(d => d.CategoryType)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__SubCatego__Categ__4CA06362");
+        });
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__USERS__3214EC07971FEA52");
+
+            entity.ToTable("USERS");
+
+            entity.Property(e => e.City)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.Gender)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.Name)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.UserName)
+                .HasMaxLength(100)
+                .IsUnicode(false);
         });
 
         OnModelCreatingPartial(modelBuilder);

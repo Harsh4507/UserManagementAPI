@@ -1,0 +1,6 @@
+Initial command to create dbcontext
+
+Scaffold-DbContext 'Server=localhost;Database=ProductCategoryManagement;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;' Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities
+
+Scaffold command to add just new table(add comma seperated if multiple tables)
+Scaffold-DbContext 'Server=localhost;Database=ProductCategoryManagement;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;' Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -Tables USERS
