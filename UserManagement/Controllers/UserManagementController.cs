@@ -100,7 +100,7 @@ namespace UserManagement.Controllers
 
         [HttpGet("GetProduct")]
         public ActionResult<string> GetProduct([FromQuery] string? name, [FromQuery] string? id)
-        {
+            {
             return "Login successful";
         }
     }
