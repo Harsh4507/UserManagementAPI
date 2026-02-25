@@ -10,7 +10,7 @@ namespace UserManagement.Model.Request
         [Required]
         public string? Password { get; set; }
 
-        public string? Role { get; set; }
+        public string? Role { get; set; } = string.Empty;
         //public readonly string Password { get; set; }
     }
 }
