@@ -12,7 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add controllers
 builder.Services.AddControllers();
-
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 // Bind JwtSettings (Options Pattern)
 builder.Services.Configure<JwtSettings>(
     builder.Configuration.GetSection("Jwt"));
@@ -89,16 +90,23 @@ builder.Services.AddDbContext<ProductCategoryManagementContext>(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "UserManagement API v1");
-        c.RoutePrefix = string.Empty;
-    });
-}
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI(c =>
+//    {
+//        c.SwaggerEndpoint("/swagger/v1/swagger.json", "UserManagement API v1");
+//        c.RoutePrefix = string.Empty;
+//    });
+//}
 
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "UserManagement API v1");
+    c.RoutePrefix = string.Empty;
+});
+app.UseSession();
 app.UseHttpsRedirection();
 
 // Ensure auth middleware runs before protected endpoints
